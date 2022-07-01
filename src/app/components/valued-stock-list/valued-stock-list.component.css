@@ -1,0 +1,71 @@
+td.mat-table-sticky {
+    border-top: 3px solid #e0e0e0;
+  }
+  th.mat-header-cell, td.mat-cell {
+    text-align: center;
+    border: 1px solid #CCC;
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
+  td.mat-footer-cell {
+    text-align: center;
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .mat-column-articolo {
+    /* flex: 0 0 140px !important; */
+    /* max-width: 140px !important; */
+    white-space: unset !important;
+    /* justify-content: flex-start; */
+     text-align: left!important;
+     font-weight:bold;
+  }
+
+  .mat-column-descrizione {
+    /* flex: 0 0 140px !important; */
+    /* max-width: 140px !important; */
+    white-space: unset !important;
+    /* justify-content: flex-start; */
+     text-align: left!important;
+  }
+
+  .mat-column-colore {
+    /* flex: 0 0 140px !important; */
+    /* max-width: 140px !important; */
+    white-space: unset !important;
+    /* justify-content: flex-start; */
+     text-align: left!important;
+  }
+  
+  .mat-column-giacenza {
+    /* flex: 0 0 200px !important; */
+    /* max-width: 200px !important; */
+    white-space: unset !important;
+    /* justify-content: flex-start; */
+    text-align: right!important;
+  }
+  .mat-column-valCostoMedio {
+    /* flex: 0 0 160px !important; */
+    max-width: 160px !important;
+    /* white-space: unset !important; */
+    /* justify-content: flex-start; */
+    text-align: right!important;
+  }
+  
+  .mat-column-valore {
+    /* flex: 0 0 160px !important; */
+    max-width: 160px !important;
+    /* white-space: unset !important; */
+    /* justify-content: flex-start; */
+    text-align: right!important;
+  }
+
+  .mat-column-select {
+    overflow: initial;
+  }
+  

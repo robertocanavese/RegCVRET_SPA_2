@@ -1,0 +1,24 @@
+td.mat-table-sticky {
+    border-top: 3px solid #e0e0e0;
+  }
+  th.mat-header-cell, td.mat-cell {
+    text-align: center;
+    border: 1px solid #CCC;
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
+  td.mat-footer-cell {
+    text-align: center;
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+ 
+  
+  .mat-column-select {
+    overflow: initial;
+  }
+  

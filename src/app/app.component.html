@@ -1,0 +1,108 @@
+<mat-sidenav-container>
+  <!--<mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$) ? 'over' : 'side'" [opened]="false">
+    <mat-nav-list>
+    </mat-nav-list>
+  </mat-sidenav>-->
+
+  <mat-sidenav [opened]="false">
+    <mat-nav-list> </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shadow-lg">
+    <!--<mat-toolbar class="sidenav-container bg-info fixed-top ">-->
+    <mat-toolbar class="sidenav-container fixed-top standardMenu" color="primary">
+      <ng-container>
+        <button mat-icon-button [matMenuTriggerFor]="dropMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #dropMenu="matMenu">
+          <ng-container>
+            <div>
+              <button mat-menu-item *ngIf="!auth.isLoggedIn()" [routerLink]="['/login']">
+                Login
+              </button>
+              <!-- <mat-divider></mat-divider> -->
+            </div>
+
+            <div>
+              <button mat-menu-item *ngIf="this.auth.is_USER" [routerLink]="['/stock-items-list']">
+                Giacenza<button *ngIf="criticals?.unmanagedIncomingOrdersCount > 0" mat-mini-fab color="warn">
+                  {{ criticals?.unmanagedIncomingOrdersCount }}
+                </button>
+              </button>
+              <!-- <mat-divider></mat-divider> -->
+            </div>
+
+            <div>
+              <button mat-menu-item *ngIf="this.auth.is_USER" [routerLink]="['/movements-list']">
+                Movimenti<button *ngIf="criticals?.unmanagedDeliveryNotesCount > 0" mat-mini-fab color="warn">
+                  {{ criticals?.unmanagedDeliveryNotesCount }}
+                </button>
+              </button>
+              <!-- <mat-divider></mat-divider> -->
+            </div>
+
+            <div>
+              <button mat-menu-item *ngIf="this.auth.is_USER" [routerLink]="['/closing-list']">
+                Chiusure mensili
+              </button>
+              <!-- <mat-divider></mat-divider> -->
+            </div>
+            <div>
+              <button mat-menu-item *ngIf="this.auth.is_USER" [routerLink]="['/valued-stock-list']">
+                Valorizzata
+              </button>
+              <!-- <mat-divider></mat-divider> -->
+            </div>
+            <div>
+              <button mat-menu-item *ngIf="this.auth.is_USER" [routerLink]="['/configuration']">
+                Configurazione
+              </button>
+            </div>
+          </ng-container>
+        </mat-menu>
+      </ng-container>
+      <img class="handCursor" src="{{ this.cd?.companyLogoUrl }}" width="400" [routerLink]="['/stock-items-list']" />
+      <!--<button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$">
+    <mat-icon aria-label="Side nav toggle icon">Menu</mat-icon>
+  </button>-->
+      <div><span class="standardTitle">Gestione registi Conto Vendita Retail</span></div>
+      <a *ngIf="!auth.isLoggedIn()" class="mx-3 text-white row" [routerLink]="['/login']">
+        <span class="fa fa-user-circle-o"></span> Login
+      </a>
+      <a *ngIf="this.auth.is_USER" class="mx-3 text-white row inline" [routerLink]="['/stock-items-list']">
+        Giacenza<button *ngIf="criticals?.unmanagedIncomingOrdersCount > 0" mat-mini-fab color="warn">
+          {{ criticals?.unmanagedIncomingOrdersCount }}
+        </button>
+      </a>
+      <a *ngIf="this.auth.is_USER" class="mx-3 text-white row inline" [routerLink]="['/movements-list']">
+        Movimenti<button *ngIf="criticals?.unmanagedDeliveryNotesCount > 0" mat-mini-fab color="warn">
+          {{ criticals?.unmanagedDeliveryNotesCount }}
+        </button>
+      </a>
+      <a *ngIf="this.auth.is_USER" class="mx-3 text-white row inline" [routerLink]="['/closing-list']">
+        Chiusure mensili
+      </a>
+      <a *ngIf="this.auth.is_USER" class="mx-3 text-white row inline" [routerLink]="['/valued-stock-list']">
+        Valorizzata
+      </a>
+      <a *ngIf="this.auth.is_USER" class="mx-3 text-white row inline" [routerLink]="['/configuration']">
+        Configurazione
+      </a>
+    </mat-toolbar>
+
+    <div class="mt-5">
+      <div class="pt-1">
+        <paMessages></paMessages>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <app-company-footer></app-company-footer>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- <app-responsive-toolbar color="primary"></app-responsive-toolbar> -->

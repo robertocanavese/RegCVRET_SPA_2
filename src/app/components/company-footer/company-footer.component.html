@@ -1,0 +1,16 @@
+<div class="copyright mat-toolbar">
+    Copyright © 1985-
+    {{ this.cd?.curYear }}
+    <a href="{{ this.cd?.companyUrl }} ">{{ this.cd?.companyName }}</a>
+    - P.I.
+    {{ this.cd?.companyPIVA }}
+    - All Rights Reserved |
+    <a class="mat-flat-button"
+      title="Company Info"
+      onclick="event.stopPropagation();window.event.cancelBubble = true; window.open(document.getElementById('hidCompanyInfo').value, 'COMPANYINFO','width=550,height=500,resizable=yes,scrollbars=yes,status=0,screenX=100,screenY=100,left=100,top=100,toolbar=0,location=0,directories=0,status=0,menubar=0');"
+      >Company Info</a
+    >
+    <!-- <button mat-flat-button (click)="openInfo()" title="Company Info">Company Info</button> -->
+  </div>
+  <input type="hidden" id="hidCompanyInfo" [value]="this.cd?.companyInfoUrl">
+  

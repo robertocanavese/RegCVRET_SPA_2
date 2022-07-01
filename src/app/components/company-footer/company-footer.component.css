@@ -1,0 +1,20 @@
+.mat-flat-button {
+    font-size: 1em;
+    padding: 0px;
+    color: #007bff;
+    background-color: transparent!important;
+  }
+  a:hover, a:active {
+    color: blue;
+  }
+  .copyright {
+    margin: 5px !important;
+    text-align: center;
+  }
+  /* .mat-button.mat-primary .mat-button-focus-overlay {
+    background-color: transparent;
+  } */
+  .mat-toolbar > a {
+    color: black!important;
+    font-size: 1em!important;
+}

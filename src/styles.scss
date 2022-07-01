@@ -1,0 +1,326 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-size: 0.75em;
+  /* Disables pull-to-refresh but allows overscroll glow effects. */
+  overscroll-behavior: none;
+  min-width:1400px!important;
+}
+
+baseApi
+{
+display: none;  
+}
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 1px grey;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  a:-webkit-any-link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.mat-h6, .mat-typography h6 {
+  font-size: 1.2em!important;
+}
+ 
+  .mat-card{
+      border-radius: 0 !important;
+      box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%) !important;
+      .mat-card-title {
+          text-transform: uppercase;
+          padding: 12px;
+          font-size: larger;
+          color: #404040;
+      }
+  }
+
+  
+
+  .parallax-image {
+    /* Add This Class To Your Html Tag And Specify Your Image in Background Image CSS Element */
+    height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .handCursor {
+    cursor: pointer;
+  }
+  
+//   toolbar-row, .mat-toolbar-single-row {
+//     height: 64px;
+// }
+
+  .overlay {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(74, 74, 74, 0.3);
+    z-index: 99999;
+  }
+  
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .commandCell {
+    color: blue;
+    text-decoration: underline;
+  }
+  
+  .spanFormField {
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+  
+  .mat-card {
+    padding: 12px !important;
+    /* min-width: 1500px; */
+  }
+  
+  .my-radio-group {
+    display: inline-flex;
+    flex-direction: row;
+    /*font-size: 0.75em;*/
+  }
+  
+  .my-radio-button {
+    margin: 10px;
+  }
+  
+  .mat-checkbox {
+  margin-left: 15px;
+  margin-right: 15px;
+  font-size: 0.9em;
+  }
+  
+  .mat-checkbox-in-grid {
+    margin-left: 0px!important;
+    }
+  
+  .my-selected-value {
+    margin: 15px 0;
+  }
+  
+  .center {
+    text-align: center !important;
+  }
+  
+  .left {
+    text-align: left !important;
+  }
+  
+  .right {
+    text-align: right !important;
+  }
+  
+  .blue {
+    color: blue !important;
+  }
+  
+  .termOrder {
+    color: red !important;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  .standardMenu {
+    background-color: black !important;
+  }
+  
+  .standardTitle {
+    padding: 0 10px 0 10px;
+    color: silver;
+    font-size: 1.1em;
+  }
+  
+  .mat-form-field {
+    font-size: 0.9em;
+  }
+  .mat-option {
+    font-size: 1em;
+  }
+  
+  .mat-autocomplete-panel {
+  line-height: 24px!important;
+  max-height:500px;
+  }
+  
+  .mat-header-row {
+    min-height: 24px;
+  }
+  
+  .mat-row {
+    min-height: 24px;
+  }
+  
+  .mat-footer-row {
+    min-height: 24px;
+  }
+  
+  .mat-row.hovered {
+    background: #eee !important;
+  }
+  
+  .mat-row.highlighted {
+    background: #999 !important;
+  }
+  
+  .mat-sort-header-container {
+    display:flex;
+    justify-content:center;
+  }
+  
+  .mat-header-cell {
+    /*word-break: break-all;*/
+    /* display: flex; */
+    /* justify-content: center; */
+    color: white !important;
+    background-color: #3f51b5;
+    /*overflow: visible !important;*/
+    font-size: 1em !important;
+    text-align: center!important;
+  }
+  
+  .mat-footer-cell {
+    word-break: break-word !important;
+    /* display: flex; */
+    /* justify-content: center; */
+    text-align: center;
+    font-weight: bold;
+    overflow: visible !important;
+    font-size: 1em !important;
+  }
+  
+  .mat-cell {
+    word-break: break-word !important; /*break-all;*/
+    /* display: flex; */
+    /* justify-content: center; */
+    text-align: center;
+    /* overflow: hidden !important; */
+    font-size: 1em !important;
+  }
+  
+  .smallFont {
+    font-size: 1.1em !important;
+  }
+  
+  .smallButton {
+    width: 50px !important;
+    min-width: unset !important;
+    margin-right: 10px !important;
+  }
+  
+  table.filterPanel td {
+    text-align: center;
+  }
+  /*  */
+  table.filterPanel td mat-form-field.mat-form-field {
+    max-width: 120px;
+  }
+  
+  table.filterPanelWide td mat-form-field.mat-form-field {
+    min-width: 300px;
+  }
+  
+  table.popupPanel td mat-form-field.mat-form-field {
+    display: unset !important;
+  }
+  
+  button {
+    margin: 3px !important;
+    font-size: 0.80rem !important;
+  }
+  
+  mat-form-field {
+    margin: 5px !important;
+  }
+  .copyright {
+    margin: 5px !important;
+    font-size: 0.9em !important;
+    text-align: center;
+  }
+  
+  .mat-mini-fab {
+    height: 24px !important;
+    width: 24px !important;
+  }
+  
+  .mat-mini-fab .mat-button-wrapper {
+    font-size: 1em;
+    margin-top: 0px;
+    padding: 0px 0px 0px 0px;
+    display: block;
+  }
+
+  .mat-toolbar > a {
+    color: white!important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 0.8em;
+}
+  
+  .inline {
+    display: inline;
+  }
+  
+  .mat-menu-item {
+    font-size: 1em;
+    background-color: black !important;
+    color: white!important;
+  }
+
+  button.mat-menu-item {
+    margin: 0px!important;
+  }
+  .mat-menu-content:not(:empty) {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: black !important;
+  }
+  .mat-menu-panel {
+    background-color: black !important;
+      overflow: visible;
+      -webkit-overflow-scrolling: touch;
+      /* max-height: calc(100vh - 40px); */
+      border-radius: 0px;
+  }
+  
+  .table-row {
+    height: 36px !important;
+  }
+  .bx--cc--title text.title {
+  font-size:14px;
+  }
+  
+  

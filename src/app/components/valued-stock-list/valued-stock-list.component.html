@@ -1,0 +1,126 @@
+<div *ngIf="working" class="overlay" style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+
+<mat-card>
+  <h6 class="center"><strong>Lista valorizzata di magazzino</strong></h6>
+  <mat-grid-list cols="1" class="center">
+
+    <mat-form-field>
+      <mat-select placeholder="Cliente di fatturazione" [(ngModel)]="selectedCodCliFatt">
+        <mat-option *ngFor="let regCvRet of regCvRets" [value]="regCvRet.value">
+          {{ regCvRet.text }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Articolo (inizia con...)" [(ngModel)]="selectedCodart" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" [(ngModel)]="selectedDataStatoA" placeholder="Data di riferimento" />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker touchUi="false" #picker2 [startAt]="defaultDataStatoA"></mat-datepicker>
+    </mat-form-field>
+    <button mat-icon-button title="Esporta in Excel le anomalie riscontrate negli ordini del periodo selezionato"
+      color="primary" (click)="exportAsXLSX()">
+      <mat-icon>arrow_downward</mat-icon>
+    </button>
+    <button mat-raised-button type="button" color="primary" (click)="resetFilter()">
+      Reset
+    </button>
+    <button mat-raised-button type="button" color="primary" (click)="loadData()">
+      Cerca
+    </button>
+  </mat-grid-list>
+</mat-card>
+
+<mat-card>
+  <div class="mat-elevation-z8">
+    <!-- <mat-form-field [hidden]="!gridItems">
+        <input matInput (keyup)="onFilterTextChanged($event.target.value)"
+               placeholder="Filter by name (or part of it)...">
+      </mat-form-field> -->
+
+    <table mat-table [dataSource]="gridItems" class="table-striped mat-elevation-z8" [hidden]="!gridItems" matSort
+      (matSortChange)="loadData()" matSortActive="articolo" matSortDirection="asc">
+
+      <ng-container matColumnDef="dataRiferimento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data riferimento</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.dataRiferimento}} </td>
+        <td mat-footer-cell *matFooterCellDef>Totale</td>
+      </ng-container>
+
+      <ng-container matColumnDef="articolo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Articolo</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.articolo}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="giacenza">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantita</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.giacenza}} </td>
+        <td mat-footer-cell *matFooterCellDef>
+          {{ totals?.qty | number: "":"en-US" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="costoMedio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Costo medio</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.costoMedio | number : '1.2'}} </td>
+        <td mat-footer-cell *matFooterCellDef>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="valCostoMedio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valore a costo medio</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.valCostoMedio | number : '1.2'}} </td>
+        <td mat-footer-cell *matFooterCellDef>
+          {{ totals?.value | number: "":"en-US" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="valore">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valore carico</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.valore | number : '1.2'}} </td>
+        <td mat-footer-cell *matFooterCellDef>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="descrizione">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrizione</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.descrizione}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="colore">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Colore</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.colore}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="listinoRetail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>listino Retail</th>
+        <td mat-cell *matCellDef="let gridItem"> {{gridItem.listinoRetail | number : '1.2'}} </td>
+        <td mat-footer-cell *matFooterCellDef>
+        </td>
+      </ng-container>
+
+
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+    </table>
+    ﻿
+    <!-- Pagination directive -->
+    <mat-paginator [hidden]="!gridItems" (page)="getData($event)" [pageSize]="10" [pageSizeOptions]="[10, 20, 50]"
+      showFirstLastButtons></mat-paginator>
+  </div>
+
+
+</mat-card>

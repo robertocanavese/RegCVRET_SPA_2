@@ -1,0 +1,117 @@
+<!--<h2 mat-dialog-title></h2>-->
+<mat-dialog-content>
+  
+  <mat-card>
+    <mat-toolbar color="primary" class="app-toolbar" >
+      <span style="margin:auto">{{this.totals?.additionalOutput}} - {{this.data.title}}</span>
+    </mat-toolbar>
+    <div>
+      <table mat-table [dataSource]="gridItems" class="table-striped mat-elevation-z8"
+        [hidden]="gridItems?.data.length == 0" matSort (matSortChange)="loadData()" matSortActive="codart"
+        matSortDirection="asc">
+
+        <ng-container matColumnDef="selected">
+          <th mat-header-cell *matHeaderCellDef>
+            Seleziona
+          </th>
+          <td mat-cell *matCellDef="let post">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? changeSelection(post) : null"
+              [(ngModel)]="post.selected" [checked]="post.selected" [disabled]="!canCreateAdjs">
+            </mat-checkbox>
+          </td>
+          <td mat-footer-cell *matFooterCellDef>Progressivo</td>
+        </ng-container>
+
+        <ng-container matColumnDef="idRec">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>IdRec</th>
+          <td mat-cell *matCellDef="let gridItem">
+            {{ gridItem.idRec }}
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="dataMov">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Data movimento</th>
+          <td mat-cell *matCellDef="let gridItem">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" [min]="minDate" [max]="maxDate" [(ngModel)]="gridItem.dataMov"
+                [disabled]="gridItem.selected || !canCreateAdjs" />
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker touchUi="false" #picker1 [startAt]="gridItem.dataMov"
+                [disabled]="gridItem.selected || !canCreateAdjs">
+              </mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="magaGestDesc">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Magazzino gestionale</th>
+          <td mat-cell *matCellDef="let gridItem"> {{gridItem.magaGestDesc}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="codArt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Articolo</th>
+          <td mat-cell *matCellDef="let gridItem"> {{gridItem.codArt}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="segnoMov">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Segno</th>
+          <td mat-cell *matCellDef="let gridItem"> {{gridItem.segnoMov}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="desCausaleMov">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Causale</th>
+          <td mat-cell *matCellDef="let gridItem"> {{gridItem.desCausaleMov}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantita">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantita</th>
+          <td mat-cell *matCellDef="let gridItem"> {{gridItem.quantita}} </td>
+          <td mat-footer-cell *matFooterCellDef>
+            {{ totals?.qty | number: "":"en-US" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valoreMov">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Valore</th>
+          <td mat-cell *matCellDef="let gridItem"> {{gridItem.valoreMov | number : '1.2'}} </td>
+          <td mat-footer-cell *matFooterCellDef>
+            {{ totals?.value | number: "":"en-US" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="datIns">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Data inserimento</th>
+          <td mat-cell *matCellDef="let gridItem"> {{ gridItem.datIns | date: "dd/MM/yyyy" }} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+      </table>
+      <mat-toolbar [hidden]="gridItems?.data.length > 0">
+        <span style="margin:auto">Nessuna rettifica necessaria per questa chiusura mese</span>
+      </mat-toolbar>
+    </div>
+  </mat-card>
+
+  <!--<button mat-raised-button color="accent">Submit</button>
+  <button mat-raised-button color="accent">Clear</button>-->
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close [mat-dialog-close]="">Annulla</button>
+  <button mat-button mat-dialog-close [mat-dialog-close]="data"
+    *ngIf="this.commonService.selection.length > 0 && canCreateAdjs">
+    Crea rettifiche selezionate
+  </button>
+  <button mat-button mat-dialog-close [mat-dialog-close]="data" *ngIf="canClose">
+    Conferma chiusura mese
+  </button>
+</mat-dialog-actions>
