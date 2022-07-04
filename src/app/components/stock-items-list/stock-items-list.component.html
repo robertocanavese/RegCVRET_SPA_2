@@ -38,7 +38,7 @@
       (matSortChange)="loadData()" matSortActive="codart" matSortDirection="asc">
 
       <ng-container matColumnDef="magaGestDesc">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Magazzino<br />gestionale</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Magazzino gestionale</th>
         <td mat-cell *matCellDef="let gridItem"> {{gridItem.magaGestDesc}} </td>
         <td mat-footer-cell *matFooterCellDef>Totale</td>
       </ng-container>
@@ -66,13 +66,13 @@
       </ng-container>
 
       <ng-container matColumnDef="dataIns">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data ultimo<br />ingresso</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data ultimo ingresso</th>
         <td mat-cell *matCellDef="let gridItem"> {{ gridItem.dataIns | date: "dd/MM/yyyy" }} </td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
       <ng-container matColumnDef="dataUpd">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data ultimo<br />aggiornamento</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data ultimo aggiornamento</th>
         <td mat-cell *matCellDef="let gridItem"> {{ gridItem.dataUpd | date: "dd/MM/yyyy" }} </td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
